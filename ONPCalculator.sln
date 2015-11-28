@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ONPCalculator.App", "ONPCalculator.App\ONPCalculator.App.csproj", "{835F971F-1301-42A7-A9A9-C14D36B67E51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ONPCalculator.Data", "ONPCalculator.Data\ONPCalculator.Data.csproj", "{7C787FDC-79FC-4E6C-AB11-E0C40DCD9DDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ONPCalculator.Services", "ONPCalculator.Services\ONPCalculator.Services.csproj", "{B67BB106-16BA-4AE6-BF2E-7E4B89EA5039}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{835F971F-1301-42A7-A9A9-C14D36B67E51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{835F971F-1301-42A7-A9A9-C14D36B67E51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{835F971F-1301-42A7-A9A9-C14D36B67E51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{835F971F-1301-42A7-A9A9-C14D36B67E51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C787FDC-79FC-4E6C-AB11-E0C40DCD9DDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C787FDC-79FC-4E6C-AB11-E0C40DCD9DDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C787FDC-79FC-4E6C-AB11-E0C40DCD9DDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C787FDC-79FC-4E6C-AB11-E0C40DCD9DDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B67BB106-16BA-4AE6-BF2E-7E4B89EA5039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B67BB106-16BA-4AE6-BF2E-7E4B89EA5039}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B67BB106-16BA-4AE6-BF2E-7E4B89EA5039}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B67BB106-16BA-4AE6-BF2E-7E4B89EA5039}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
