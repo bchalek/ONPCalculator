@@ -9,7 +9,7 @@ using System.Text;
 
 namespace ONPCalculator.Services
 {
-	public class ONPCalculatorService
+	public class ONPCalculateService
 	{
 		private InternalBuffer<OutputOperation> OutputOperationBuffer;
 		public ObservableCollection<OutputOperation> OutputOperationList
@@ -24,7 +24,6 @@ namespace ONPCalculator.Services
 				return result;
 			}
 		}
-
 
 		public float CalculateONPExpresion(string onpExpression)
 		{

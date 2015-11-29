@@ -23,9 +23,9 @@ namespace ONPCalculator.App.ViewModel
 
 		string calculationOutput;
 
-		InfixONPConverter converter;
+		InfixONPConvertService converter;
 
-		ONPCalculatorService calculator;
+		ONPCalculateService calculator;
 
 		#endregion Fields
 
@@ -124,8 +124,8 @@ namespace ONPCalculator.App.ViewModel
 			CreateCalculationCommand();
 			CreateConversionCommand();
 			ConversionInput = "3+4*2/(1-5)";
-			converter = new InfixONPConverter();
-			calculator = new ONPCalculatorService();
+			converter = new InfixONPConvertService();
+			calculator = new ONPCalculateService();
 		}
 
 		#endregion Cstr

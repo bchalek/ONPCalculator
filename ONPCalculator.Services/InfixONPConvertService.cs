@@ -9,7 +9,7 @@ using System.Text;
 
 namespace ONPCalculator.Services
 {
-	public class InfixONPConverter
+	public class InfixONPConvertService
 	{
 		private InternalBuffer<OutputOperation> OutputOperationBuffer;
 		public ObservableCollection<OutputOperation> OutputOperationList

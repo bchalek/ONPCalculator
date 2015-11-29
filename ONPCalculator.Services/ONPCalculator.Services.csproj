@@ -42,8 +42,8 @@
     <Compile Include="Extensions\CharExtensions.cs" />
     <Compile Include="Extensions\OperatorExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="InfixONPConverter.cs" />
-    <Compile Include="ONPCalculatorService.cs" />
+    <Compile Include="InfixONPConvertService.cs" />
+    <Compile Include="ONPCalculateService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
