@@ -15,12 +15,24 @@ namespace ONPCalculator.App.ViewModel
 	{
 		#region Fields
 
+		/// <summary>
+		/// Pole danych wejściowych dla konwertera.
+		/// </summary>
 		string conversionInput;
 
+		/// <summary>
+		/// Pole danych wyjściowych konwertera.
+		/// </summary>
 		string conversionOutput;
 
+		/// <summary>
+		/// Pole danych wejściowych kalkulatora.
+		/// </summary>
 		string calculationInput;
 
+		/// <summary>
+		/// Pole danych wyjściowych kalkulatora.
+		/// </summary>
 		string calculationOutput;
 
 		InfixONPConvertService converter;
@@ -31,6 +43,9 @@ namespace ONPCalculator.App.ViewModel
 
 		#region Public properties
 
+		/// <summary>
+		/// Kolekcja operacji wykonanych podczas konwersji.
+		/// </summary>
 		public ObservableCollection<OutputOperation> ConversionOperationList
 		{
 			get
@@ -39,6 +54,9 @@ namespace ONPCalculator.App.ViewModel
 			}
 		}
 
+		/// <summary>
+		/// Akcesor do danych wejściowych konwertera.
+		/// </summary>
 		public string ConversionInput
 		{
 			get
@@ -52,6 +70,9 @@ namespace ONPCalculator.App.ViewModel
 			}
 		}
 
+		/// <summary>
+		/// Akcesor do danych wyjściowych konwertera.
+		/// </summary>
 		public string ConversionOutput
 		{
 			get
@@ -64,7 +85,10 @@ namespace ONPCalculator.App.ViewModel
 				OnPropertyChanged("ConversionOutput");
 			}
 		}
-
+		
+		/// <summary>
+		/// Kolekcja operacji wykonanych podczas kalkulacji.
+		/// </summary>
 		public ObservableCollection<OutputOperation> CalculationOperationList
 		{
 			get
@@ -73,6 +97,9 @@ namespace ONPCalculator.App.ViewModel
 			}
 		}
 
+		/// <summary>
+		/// Akcesor do danych wejściowych kalkulatora.
+		/// </summary>
 		public string CalculationInput
 		{
 			get
@@ -85,7 +112,10 @@ namespace ONPCalculator.App.ViewModel
 				OnPropertyChanged("CalculationInput");
 			}
 		}
-
+		
+		/// <summary>
+		/// Akcesor do danych wyjściowych kalkulatora.
+		/// </summary>
 		public string CalculationOutput
 		{
 			get

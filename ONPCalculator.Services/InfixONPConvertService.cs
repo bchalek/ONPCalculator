@@ -17,7 +17,7 @@ namespace ONPCalculator.Services
 			get
 			{
 				ObservableCollection<OutputOperation> result = new ObservableCollection<OutputOperation>();
-				while(OutputOperationBuffer != null && OutputOperationBuffer.Any())
+				while (OutputOperationBuffer != null && OutputOperationBuffer.Any())
 				{
 					result.Add(OutputOperationBuffer.Pop());
 				}
@@ -29,120 +29,82 @@ namespace ONPCalculator.Services
 		{
 			int id = 0;
 			OutputOperationBuffer = new InternalBuffer<OutputOperation>();
-			//OutputOperationList = new ObservableCollection<OutputOperation>();
 			InternalStack<Operator> stack = new InternalStack<Operator>();
 
 			string output = string.Empty;
 			char[] infixArray = infix.Trim().ToArray();
 			string input = infix;
-			//OutputOperationList.Add
-			OutputOperationBuffer.Push(new OutputOperation()
-			{
-				Id = id++,
-				Input = input,
-				Stack = stack.ToList().ToReverseString(),
-				Output = output
-			});
+			OutputOperationBuffer.Push(new OutputOperation(id++, input, stack.ToReverseString(), output));
 
 			foreach (char infixChar in infixArray)
 			{
-				input = input.Remove(0, 1);
+				if(!string.IsNullOrEmpty(input))
+					input = input.Remove(0, 1);
+
 				if (!infixChar.IsOperator())
 				{
-					output = output.TrimEnd();
-					output += " ";
-					output += infixChar;
-					//OutputOperationList.Add
-					OutputOperationBuffer.Push(new OutputOperation()
-					{
-						Id = id++,
-						Input = input,
-						Stack = stack.ToList().ToReverseString(),
-						Output = output
-					});
+					AddToOutput(ref output, infixChar);
+
+					OutputOperationBuffer.Push(new OutputOperation(id++, input, stack.ToReverseString(), output));
 				}
 				else if (infixChar == Operators.OpenBracket)
 				{
-					output = output.TrimEnd();
-					output += " ";
+					AddToOutput(ref output);
+
 					Operator newOperator = new Operator(infixChar);
 					stack.Push(newOperator);
-					//OutputOperationList.Add
-					OutputOperationBuffer.Push(new OutputOperation()
-					{
-						Id = id++,
-						Input = input,
-						Stack = stack.ToList().ToReverseString(),
-						Output = output
-					});
+
+					OutputOperationBuffer.Push(new OutputOperation(id++, input, stack.ToReverseString(), output));
 				}
 				else if (infixChar == Operators.CloseBracket)
 				{
-					output = output.TrimEnd();
-					output += " ";
+					AddToOutput(ref output);
+
 					Operator newOperator = new Operator(infixChar);
 					while (stack.Any() && stack.Peek().OperatorType != Operators.OpenBracket)
 					{
-						output = output.TrimEnd();
-						output += " ";
-						output += stack.Pop().OperatorType;
-						//OutputOperationList.Add
-						OutputOperationBuffer.Push(new OutputOperation()
-						{
-							Id = id++,
-							Input = input,
-							Stack = stack.ToList().ToReverseString(),
-							Output = output
-						});
+						AddToOutput(ref output, stack.Pop());
+						OutputOperationBuffer.Push(new OutputOperation(id++, input, stack.ToReverseString(), output));
 					}
 					stack.Pop();
-					//OutputOperationList.Add
-					OutputOperationBuffer.Push(new OutputOperation()
-					{
-						Id = id++,
-						Input = input,
-						Stack = stack.ToList().ToReverseString(),
-						Output = output
-					});
+
+					OutputOperationBuffer.Push(new OutputOperation(id++, input, stack.ToReverseString(), output));
 				}
 				else
 				{
-					output = output.TrimEnd();
-					output += " ";
+					AddToOutput(ref output);
+
 					Operator newOperator = new Operator(infixChar);
 					while (stack.Any() && stack.Peek().Priority >= newOperator.Priority)
 					{
-						output = output.TrimEnd();
-						output += " ";
-						output += stack.Pop().OperatorType;
+						AddToOutput(ref output, stack.Pop());
 					}
 					stack.Push(newOperator);
-					//OutputOperationList.Add
-					OutputOperationBuffer.Push(new OutputOperation()
-					{
-						Id = id++,
-						Input = input,
-						Stack = stack.ToList().ToReverseString(),
-						Output = output
-					});
+
+					OutputOperationBuffer.Push(new OutputOperation(id++, input, stack.ToReverseString(), output));
 				}
 			}
 			while (stack.Any())
 			{
-				output = output.TrimEnd();
-				output += " ";
-				output += stack.Pop().OperatorType;
-				//OutputOperationList.Add
-				OutputOperationBuffer.Push(new OutputOperation()
-				{
-					Id = id++,
-					Input = input,
-					Stack = stack.ToList().ToReverseString(),
-					Output = output
-				});
+				AddToOutput(ref output, stack.Pop());
 			}
 
 			return output;
+		}
+
+		private void AddToOutput(ref string _output, Operator _operator = null)
+		{
+			_output = _output.TrimEnd();
+			_output += " ";
+			if (_operator != null)
+				_output += _operator.OperatorType;
+		}
+
+		private void AddToOutput(ref string _output, char _character)
+		{
+			_output = _output.TrimEnd();
+			_output += " ";
+			_output += _character;
 		}
 	}
 }

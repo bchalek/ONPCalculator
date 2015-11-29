@@ -29,18 +29,14 @@ namespace ONPCalculator.Services
 		{
 			int id = 0;
 			OutputOperationBuffer = new InternalBuffer<OutputOperation>();
-			//OutputOperationList = new ObservableCollection<OutputOperation>();
+
 			InternalStack<string> stack = new InternalStack<string>();
+
 			List<string> tokenList = onpExpression.Trim().Split(' ').ToList();
 			string input = onpExpression.Trim();
-			//OutputOperationList.Add
-			OutputOperationBuffer.Push(new OutputOperation()
-			{
-				Id = id++,
-				Input = input,
-				Stack = stack.ToList().ToReverseString(),
-				Output = string.Empty
-			});
+
+			OutputOperationBuffer.Push(new OutputOperation(id++, input, stack.ToReverseString(), string.Empty));
+
 			foreach (string token in tokenList)
 			{
 				if (!string.IsNullOrEmpty(input.Trim()))
@@ -50,30 +46,19 @@ namespace ONPCalculator.Services
 				{
 					string secondToken = stack.Pop();
 					string firstToken = stack.Pop();
-					float firstValue = float.Parse(firstToken);
-					float secondValue = float.Parse(secondToken);
-					float result = Calculate(token, firstValue, secondValue);
-					//OutputOperationList.Add
-					OutputOperationBuffer.Push(new OutputOperation()
-					{
-						Id = id++,
-						Input = input,
-						Stack = stack.ToList().ToReverseString(),
-						Output = string.Format("{0} {1} {2}", firstValue, token, secondValue)
-					});
-					stack.Push(result.ToString());
+					string result = Calculate(token, firstToken, secondToken);
+
+					OutputOperationBuffer.Push(new OutputOperation(id++, input, stack.ToReverseString(), string.Format("{0} {1} {2}", firstToken, token, secondToken)));
+
+					stack.Push(result);
+
+					OutputOperationBuffer.Push(new OutputOperation(id++, input, stack.ToReverseString(), string.Empty));
 				}
 				else
 				{
 					stack.Push(token);
-					//OutputOperationList.Add
-					OutputOperationBuffer.Push(new OutputOperation()
-					{
-						Id = id++,
-						Input = input,
-						Stack = stack.ToList().ToReverseString(),
-						Output = string.Empty
-					});
+
+					OutputOperationBuffer.Push(new OutputOperation(id++, input, stack.ToReverseString(), string.Empty));
 				}
 			}
 
@@ -81,6 +66,18 @@ namespace ONPCalculator.Services
 			float resultValue = float.Parse(resultToken);
 			return resultValue;
 		}
+
+		private string Calculate(string operatorValue, string firstToken, string secondToken)
+		{
+			float firstValue;
+			float secondValue;
+
+			if (float.TryParse(firstToken, out firstValue)
+				&& float.TryParse(secondToken, out secondValue))
+				return Calculate(operatorValue, firstValue, secondValue).ToString();
+
+			return string.Empty;
+        }
 
 		private float Calculate(string operatorValue, float firstValue, float secondValue)
 		{

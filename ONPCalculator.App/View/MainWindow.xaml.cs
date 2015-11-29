@@ -22,22 +22,10 @@ namespace ONPCalculator.App.View
     /// </summary>
     public partial class MainWindow : Window
     {
-		public MainViewModel ViewModel
-		{
-			get
-			{
-				return (MainViewModel)DataContext;
-			}
-			set
-			{
-				DataContext = value;
-			}
-		}
-
         public MainWindow()
         {
 			InitializeComponent();
-			ViewModel = new MainViewModel();
+			DataContext = new MainViewModel();
         }
     }
 }
